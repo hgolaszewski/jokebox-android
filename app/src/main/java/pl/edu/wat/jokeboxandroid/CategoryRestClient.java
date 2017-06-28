@@ -11,10 +11,24 @@ import retrofit.converter.GsonConverter;
  */
 
 public class CategoryRestClient {
+
+    private String baseUrl = "http://192.168.0.80:8080";
     private CategoryRestService categoryRestService;
-    private String baseUrl = "http://10.0.2.2:8080";
+
     public CategoryRestClient(String baseUrl) {
         this.baseUrl = baseUrl;
+        init();
+    }
+
+    public CategoryRestClient() {
+        init();
+    }
+
+    public CategoryRestService getApiService() {
+        return categoryRestService;
+    }
+
+    private void init(){
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .setDateFormat("yyyy'-'MM'-'dd")
@@ -27,7 +41,4 @@ public class CategoryRestClient {
         categoryRestService = rstAdapter.create(CategoryRestService.class);
     }
 
-    public CategoryRestService getApiService() {
-        return categoryRestService;
-    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import pl.edu.wat.jokeboxandroid.model.SimpleJokeDto;
 import retrofit.http.GET;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 /**
@@ -13,6 +14,9 @@ import retrofit.http.Path;
 public interface JokeRestService {
 
     @GET("/joke/{category}")
-    List<SimpleJokeDto> pageJokeByCategory(@Path("category") String category);
+    List<SimpleJokeDto> listJokeByCategory(@Path("category") String category);
+
+    @PUT("/joke/{id}/{likeOrUnlike}")
+    SimpleJokeDto markJoke(@Path("id") int id, @Path("likeOrUnlike") String likeOrUnlike);
 
 }

@@ -11,10 +11,24 @@ import retrofit.converter.GsonConverter;
  */
 
 public class JokeRestClient {
+
     private JokeRestService jokeRestService;
-    private String baseUrl = "http://10.0.2.2:8080";
+    private String baseUrl = "http://192.168.0.80:8080";
+
     public JokeRestClient(String baseUrl) {
         this.baseUrl = baseUrl;
+        init();
+    }
+
+    public JokeRestClient(){
+        init();
+    }
+
+    public JokeRestService getApiService() {
+        return jokeRestService;
+    }
+
+    private void init(){
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .setDateFormat("yyyy'-'MM'-'dd")
@@ -27,7 +41,4 @@ public class JokeRestClient {
         jokeRestService = rstAdapter.create(JokeRestService.class);
     }
 
-    public JokeRestService getApiService() {
-        return jokeRestService;
-    }
 }

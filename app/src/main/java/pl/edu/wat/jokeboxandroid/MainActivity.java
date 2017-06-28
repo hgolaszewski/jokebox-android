@@ -20,42 +20,32 @@ import pl.edu.wat.jokeboxandroid.model.SimpleCategoryDto;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    LinearLayout buttonContainer;
+    static CategoryRestService categoryRestService;
+    static CategoryAsyncTask categoryAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        buttonContainer = (LinearLayout) findViewById(R.id.categories);
 
-        CategoryRestClient categoryRestClient = new CategoryRestClient("http://192.168.0.80:8080");
-        CategoryRestService categoryRestService = categoryRestClient.getApiService();
-        CategoryAsyncTask categoryAsyncTask = new CategoryAsyncTask();
+        CategoryRestClient categoryRestClient = new CategoryRestClient();
+        categoryRestService = categoryRestClient.getApiService();
+        categoryAsyncTask = new CategoryAsyncTask();
         categoryAsyncTask.execute(categoryRestService);
-
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
+        if (id == R.id.action_settings) { return true; }
         return super.onOptionsItemSelected(item);
     }
 
@@ -64,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected List<SimpleCategoryDto> doInBackground(CategoryRestService... params) {
-            CategoryRestService categoryRestService = params[0];
             List<SimpleCategoryDto> simpleCategoryDtos = null;
             try {
+                CategoryRestService categoryRestService = params[0];
                 simpleCategoryDtos = categoryRestService.listAllCategory();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -79,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(simpleCategoryDtos);
 
             for(final SimpleCategoryDto simpleCategoryDto: simpleCategoryDtos){
-                LinearLayout buttonContainer = (LinearLayout) findViewById(R.id.categories);
+
                 Button button = new Button(MainActivity.this);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -94,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+
     }
 
 }
