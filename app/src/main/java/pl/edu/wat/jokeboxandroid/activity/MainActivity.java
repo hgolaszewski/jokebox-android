@@ -135,21 +135,7 @@ public class MainActivity extends Activity {
                         button.setText(simpleCategoryDto.getName());
                         buttonContainer.addView(button);
                     }
-                    for(final SimpleCategoryDto simpleCategoryDto: simpleCategoryDtos) {
 
-                        Button button = new Button(MainActivity.this);
-                        button.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(MainActivity.this, ScrollingActivity.class);
-                                intent.putExtra("requestparam", simpleCategoryDto.getRequestparam());
-                                startActivity(intent);
-                            }});
-
-                        button.setText(simpleCategoryDto.getName());
-                        buttonContainer.addView(button);
-                    }
                 } else {
                     Toast.makeText(MainActivity.this, "Http error code: " + response.code(), Toast.LENGTH_SHORT).show();
                 }

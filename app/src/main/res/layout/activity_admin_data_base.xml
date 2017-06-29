@@ -45,15 +45,17 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fillViewport="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#ffffff">
 
             <LinearLayout
                 android:id="@+id/categories"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_margin="20dp"
+                android:gravity="center_vertical"
+                android:weightSum="1">
             </LinearLayout>
 
         </ScrollView>
