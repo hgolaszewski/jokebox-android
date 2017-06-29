@@ -1,10 +1,12 @@
-package pl.edu.wat.jokeboxandroid;
+package pl.edu.wat.jokeboxandroid.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import retrofit.RestAdapter;
-import retrofit.converter.GsonConverter;
+import pl.edu.wat.jokeboxandroid.client.service.CategoryRestService;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 /**
  * Created by Hubert on 27.06.2017.
@@ -33,10 +35,10 @@ public class CategoryRestClient {
                 .setLenient()
                 .setDateFormat("yyyy'-'MM'-'dd")
                 .create();
-        RestAdapter rstAdapter = new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(this.baseUrl)
-                .setConverter(new GsonConverter(gson))
+        Retrofit rstAdapter = new Retrofit .Builder()
+                .baseUrl(this.baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         categoryRestService = rstAdapter.create(CategoryRestService.class);
     }

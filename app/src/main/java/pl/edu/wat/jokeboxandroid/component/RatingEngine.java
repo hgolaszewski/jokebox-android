@@ -1,5 +1,7 @@
-package pl.edu.wat.jokeboxandroid;
+package pl.edu.wat.jokeboxandroid.component;
 
+import pl.edu.wat.jokeboxandroid.R;
+import pl.edu.wat.jokeboxandroid.activity.ScrollingActivity;
 import pl.edu.wat.jokeboxandroid.model.SimpleJokeDto;
 
 /**

@@ -1,22 +1,20 @@
-package pl.edu.wat.jokeboxandroid;
+package pl.edu.wat.jokeboxandroid.component;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
-import android.support.annotation.RestrictTo;
+import android.support.annotation.IntegerRes;
 import android.support.v4.util.Pair;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.List;
-
+import pl.edu.wat.jokeboxandroid.activity.MainActivity;
+import pl.edu.wat.jokeboxandroid.activity.ScrollingActivity;
 import pl.edu.wat.jokeboxandroid.model.SimpleJokeDto;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Hubert on 28.06.2017.
@@ -77,15 +75,13 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
     }
 
     public void onSwipeRight() {
-        MarkAsyncsTask markAsyncsTask = new MarkAsyncsTask();
         Pair<Integer, String> requestParams = new Pair<>(ScrollingActivity.simpleJokeDtos.get(ScrollingActivity.currentJokeIndex).getId(), "unlike");
-        markAsyncsTask.execute(requestParams);
+        doRequest(requestParams);
     }
 
     public void onSwipeLeft() {
-        MarkAsyncsTask markAsyncsTask = new MarkAsyncsTask();
         Pair<Integer, String> requestParams = new Pair<>(ScrollingActivity.simpleJokeDtos.get(ScrollingActivity.currentJokeIndex).getId(), "like");
-        markAsyncsTask.execute(requestParams);
+        doRequest(requestParams);
     }
 
     public void onSwipeTop() {
@@ -108,28 +104,30 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
         RatingEngine.setRate(ScrollingActivity.simpleJokeDtos.get(ScrollingActivity.currentJokeIndex));
     }
 
-    private class MarkAsyncsTask extends AsyncTask<Pair<Integer, String>, Integer, SimpleJokeDto> {
+    private void doRequest(final Pair<Integer, String> requestParams){
 
-        @Override
-        protected SimpleJokeDto doInBackground(Pair<Integer, String>... params) {
-            SimpleJokeDto simpleJokeDto = null;
-            try {
-                Pair<Integer, String> requestParams = params[0];
-                simpleJokeDto = ScrollingActivity.jokeRestService.markJoke(requestParams.first, requestParams.second);
-            } catch (Exception e) {
-                e.printStackTrace();
+        Call<SimpleJokeDto> callList = ScrollingActivity.jokeRestService.markJoke(requestParams.first, requestParams.second);
+        callList.enqueue(new Callback<SimpleJokeDto>() {
+
+            @Override
+            public void onResponse(Call<SimpleJokeDto> call, Response<SimpleJokeDto> response) {
+                if(response.isSuccessful()){
+                    SimpleJokeDto simpleJokeDto = response.body();
+                    int index = ScrollingActivity.simpleJokeDtos.indexOf(simpleJokeDto);
+                    SimpleJokeDto finded = ScrollingActivity.simpleJokeDtos.get(index);
+                    finded.setLikeNumber(simpleJokeDto.getLikeNumber());
+                    finded.setUnlikeNumber(simpleJokeDto.getUnlikeNumber());
+                    RatingEngine.setRate(simpleJokeDto);
+                }else{
+
+                }
             }
-            return simpleJokeDto;
-        }
 
-        @Override
-        protected void onPostExecute(SimpleJokeDto simpleJokeDto) {
-            super.onPostExecute(simpleJokeDto);
-            int index = ScrollingActivity.simpleJokeDtos.indexOf(simpleJokeDto);
-            SimpleJokeDto finded = ScrollingActivity.simpleJokeDtos.get(index);
-            finded.setLikeNumber(simpleJokeDto.getLikeNumber());
-            finded.setUnlikeNumber(simpleJokeDto.getUnlikeNumber());
-            RatingEngine.setRate(simpleJokeDto);
-        }
+            @Override
+            public void onFailure(Call<SimpleJokeDto> call, Throwable t) {
+
+            }
+        });
     }
+
 }
