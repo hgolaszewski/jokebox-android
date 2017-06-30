@@ -95,6 +95,7 @@ public class AdminJokesActivity extends AppCompatActivity {
                     textView = new TextView(AdminJokesActivity.this);
                     textView.setText(simpleJokeDtos.get(0).getContent());
                     textView.setTextSize(18);
+                    textView.setTextColor(Color.rgb(0,0,0));
                     jokesContainer.addView(textView);
 
                     ImageView separator2 = new ImageView(AdminJokesActivity.this);

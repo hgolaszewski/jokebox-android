@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class JokeRestClient {
 
     private JokeRestService jokeRestService;
-    private String baseUrl = "http://192.168.43.61:8080";
+    private String baseUrl = "http://192.168.0.80:8080";
 
     public JokeRestClient(String baseUrl) {
         this.baseUrl = baseUrl;

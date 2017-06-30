@@ -1,6 +1,7 @@
 package pl.edu.wat.jokeboxandroid.component;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.IntegerRes;
 import android.support.v4.util.Pair;
@@ -77,14 +78,17 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
     public void onSwipeRight() {
         Pair<Integer, String> requestParams = new Pair<>(ScrollingActivity.simpleJokeDtos.get(ScrollingActivity.currentJokeIndex).getId(), "unlike");
         doRequest(requestParams);
+        ScrollingActivity.textView.setTextColor(Color.rgb(255,64,64));
     }
 
     public void onSwipeLeft() {
         Pair<Integer, String> requestParams = new Pair<>(ScrollingActivity.simpleJokeDtos.get(ScrollingActivity.currentJokeIndex).getId(), "like");
         doRequest(requestParams);
+        ScrollingActivity.textView.setTextColor(Color.rgb(34,139,34));
     }
 
     public void onSwipeTop() {
+        ScrollingActivity.textView.setTextColor(Color.rgb(0,0,0));
         if(ScrollingActivity.currentJokeIndex == ScrollingActivity.simpleJokeDtos.size()-1){
             ScrollingActivity.currentJokeIndex = 0;
         } else {
@@ -95,6 +99,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
     }
 
     public void onSwipeBottom() {
+        ScrollingActivity.textView.setTextColor(Color.rgb(0,0,0));
         if(ScrollingActivity.currentJokeIndex == 0){
             ScrollingActivity.currentJokeIndex = ScrollingActivity.simpleJokeDtos.size()-1;
         } else {

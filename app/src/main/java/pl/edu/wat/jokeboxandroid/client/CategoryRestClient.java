@@ -14,7 +14,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 public class CategoryRestClient {
 
-    private String baseUrl = "http://192.168.43.61:8080";
+    private String baseUrl = "http://192.168.0.80:8080";
     private CategoryRestService categoryRestService;
 
     public CategoryRestClient(String baseUrl) {

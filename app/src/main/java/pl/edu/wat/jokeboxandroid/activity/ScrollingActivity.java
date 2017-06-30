@@ -1,5 +1,6 @@
 package pl.edu.wat.jokeboxandroid.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -55,6 +56,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     textView = new TextView(ScrollingActivity.this);
                     textView.setText(simpleJokeDtos.get(0).getContent());
                     textView.setTextSize(18);
+                    textView.setTextColor(Color.rgb(0,0,0));
                     jokesContainer.addView(textView);
 
                     ImageView separator2 = new ImageView(ScrollingActivity.this);

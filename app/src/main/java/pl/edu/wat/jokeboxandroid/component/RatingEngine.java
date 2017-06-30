@@ -20,7 +20,7 @@ public class RatingEngine {
         double sum = likes + dislikes;
         double result = 0.0;
         if(sum != 0){
-            result = ((likes-dislikes)/sum)*5.0;
+            result = ((likes)/sum)*5.0;
             if(result < 1.2){
                 ScrollingActivity.ratingBar.setImageResource(R.drawable.stars1);
             } else if(result >= 1.2 && result < 2.2){

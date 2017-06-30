@@ -14,7 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AdministrationRestClient {
 
-    private String baseUrl = "http://192.168.43.61:8080";
+    private String baseUrl = "http://192.168.0.80:8080";
+
     private AdministrationRestService administrationRestService;
 
     public AdministrationRestClient(String baseUrl) {
