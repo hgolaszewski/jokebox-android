@@ -29,7 +29,8 @@
         <activity android:name=".activity.AdminPanelActivity" />
         <activity android:name=".activity.AdminManagementActivity" />
         <activity android:name=".activity.AdminJokesActivity" />
-        <activity android:name=".activity.AdminDataBaseActivity"></activity>
+        <activity android:name=".activity.AdminDataBaseActivity" />
+        <activity android:name=".activity.AdminAddCategoryActivity"></activity>
     </application>
 
 </manifest>

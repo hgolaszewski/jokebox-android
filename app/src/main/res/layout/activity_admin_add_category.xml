@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pl.edu.wat.jokeboxandroid.activity.AdminAddCategoryActivity"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:id="@+id/addcategory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nazwa:" />
+
+        <EditText
+            android:id="@+id/catname"
+            android:layout_height="51dp"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_width="fill_parent">
+        </EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Parametr żądania:" />
+
+        <EditText
+            android:id="@+id/param"
+            android:layout_height="51dp"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_width="fill_parent">
+        </EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adres:" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_height="51dp"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_width="fill_parent"
+            android:hint="http://sennik.dowcipy.pl">
+        </EditText>
+
+        <Button
+            android:id="@+id/addcatbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj" />
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

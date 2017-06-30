@@ -40,8 +40,9 @@
         android:layout_height="632dp"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-        <ScrollView
-            tools:context="pl.edu.wat.jokeboxandroid.activity.AdminManagementActivity"
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:context="pl.edu.wat.jokeboxandroid.activity.MainActivity"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fillViewport="true"
@@ -49,13 +50,14 @@
             android:background="#ffffff">
 
             <LinearLayout
-                android:id="@+id/categories"
+                android:id="@+id/management"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_margin="20dp"
                 android:gravity="center_vertical"
                 android:weightSum="1">
+
             </LinearLayout>
 
         </ScrollView>
@@ -67,11 +69,13 @@
         android:layout_width="wrap_content"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@android:drawable/ic_menu_manage"
+        android:src="@android:drawable/ic_menu_revert"
         android:layout_marginRight="16dp"
         android:clickable="true"
         app:fabSize="mini" />
+
 </android.support.design.widget.CoordinatorLayout>
+
 
 
 

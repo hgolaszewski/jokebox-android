@@ -31,6 +31,9 @@ public interface AdministrationRestService {
     @POST("/admin/category")
     Call<Category> addCategory(@Body SimpleCategoryDtoInput simpleCategoryDtoInput);
 
+    @PATCH("/admin/category/{id}")
+    Call<Category> deleteCategory(@Path("id") int id, @Body Token token);
+
     @POST("/admin/joke")
     Call<Joke> addJoke(@Body SimpleJokeDtoInput simpleJokeDtoInput);
 
@@ -40,7 +43,7 @@ public interface AdministrationRestService {
     @PUT("/admin/resetDataBase")
     Call<OKResponseDto> fillDatabase(@Body Token token);
 
-    @PATCH(value = "/admin/cleanJokes")
+    @PATCH("/admin/cleanJokes")
     Call<OKResponseDto> cleanJokes(@Body Token token);
 
 }

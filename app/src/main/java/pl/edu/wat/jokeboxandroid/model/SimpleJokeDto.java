@@ -15,7 +15,10 @@ public class SimpleJokeDto {
     public SimpleJokeDto() {
     }
 
-    public SimpleJokeDto(String content, SimpleCategoryDto category) {
+    public SimpleJokeDto(String content, SimpleCategoryDto category, int id, int likeNumber, int unlikeNumber) {
+        this.id = id;
+        this.likeNumber = likeNumber;
+        this.unlikeNumber = unlikeNumber;
         this.content = content;
         this.category = category;
     }

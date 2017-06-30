@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 import pl.edu.wat.jokeboxandroid.R;
@@ -41,6 +42,12 @@ public class ScrollingActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     simpleJokeDtos = response.body();
 
+                    if(simpleJokeDtos.isEmpty()){
+                        Toast.makeText(ScrollingActivity.this, "No jokes!", Toast.LENGTH_SHORT).show();
+                        ScrollingActivity.this.finish();
+                        return;
+                    }
+
                     ImageView separator1 = new ImageView(ScrollingActivity.this);
                     separator1.setImageResource(R.drawable.separator);
                     jokesContainer.addView(separator1);
@@ -59,7 +66,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     currentJokeIndex++;
 
                 } else {
-                    Toast.makeText(ScrollingActivity.this, "Http error code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScrollingActivity.this, "An error occured!", Toast.LENGTH_SHORT).show();
                 }
             }
 

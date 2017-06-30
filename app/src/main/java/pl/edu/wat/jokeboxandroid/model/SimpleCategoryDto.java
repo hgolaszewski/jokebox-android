@@ -6,13 +6,15 @@ package pl.edu.wat.jokeboxandroid.model;
 
 public class SimpleCategoryDto {
 
+    int id;
     String name;
     String requestparam;
 
     public SimpleCategoryDto() {
     }
 
-    public SimpleCategoryDto(String name, String requestparam) {
+    public SimpleCategoryDto(String name, String requestparam, int id) {
+        this.id = id;
         this.name = name;
         this.requestparam = requestparam;
     }
@@ -31,6 +33,14 @@ public class SimpleCategoryDto {
 
     public void setRequestparam(String requestparam) {
         this.requestparam = requestparam;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

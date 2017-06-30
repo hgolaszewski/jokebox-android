@@ -8,20 +8,10 @@ import java.util.Date;
 
 public class OKResponseDto {
 
-    Date date;
     String message;
 
-    public OKResponseDto(Date date, String message) {
-        this.date = date;
+    public OKResponseDto(String message) {
         this.message = message;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getMessage() {
